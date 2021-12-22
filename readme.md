@@ -7,7 +7,7 @@ A react library to convert react jsx svg component to image dataurl.
 
 ## Motivation
 
-I wrote many react svg components. Practically, I need to convert origin svg element to png for the sake of protecting svg source file from been taken by web user as robots. Besides, I need some pngs as thumbnail images. This library is designed to do exactly the thing.
+I wrote many react-svg components. Practically, I need to convert origin svg element to png for the sake of protecting svg source from been taken by web users and robots. Besides, I need some pngs as thumbnail images. This library is designed to do exactly the thing.
 
 ## Install
 

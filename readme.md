@@ -1,5 +1,8 @@
 # Jsx To Png
 
+[![npm version](https://badge.fury.io/js/jsx-to-png.svg)](https://badge.fury.io/js/jsx-to-png)
+![ts](https://badgen.net/badge/Built%20With/TypeScript/blue)
+
 A react library to convert react jsx svg component to image dataurl.
 
 ## Motivation

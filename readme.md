@@ -51,6 +51,9 @@ jsxToPng(<Icon name="Bruce Lee"></Icon>, { height: 100, width: 100 })
     throw new Error(error);
   })
 ```
+## Online Demo
+
+On the way !
 
 ## Contribute
 

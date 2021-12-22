@@ -24,19 +24,26 @@ type AtLeast<T, List extends keyof T> = Omit<T, List> & Required<Pick<T, List>>;
  * @param options render options, see `JsxToPngOptions`
  * @returns
  */
-export function jsxToPng(
+export async function jsxToPng(
   elementOrCpnt: JSX.Element | (() => JSX.Element),
-  options: JsxToPngOptions
+  options?: JsxToPngOptions
 ): Promise<string> {
   const element =
     typeof elementOrCpnt === "function" ? elementOrCpnt() : elementOrCpnt;
 
   const imageDomStr = ReactDOMServer.renderToString(element);
 
+  const rect = await measureRect(element);
+
   return new Promise((resolve, reject) => {
     try {
-      measureRect(element).then(rect=>{
-        svgToPng(imageDomStr, resolve, { ...defaultOptions, height: rect.height, width: rect.width, ...options });
+      svgToPng(imageDomStr, (dataUrl)=>{
+        resolve(dataUrl);
+      }, {
+        ...defaultOptions,
+        height: rect.height,
+        width: rect.width,
+        ...options,
       })
     } catch (error) {
       reject(error);
@@ -54,7 +61,7 @@ function svgToPng(
     url,
     (imgData) => {
       callback(imgData);
-      URL.revokeObjectURL(url);
+      // window.URL.revokeObjectURL(url);
     },
     options
   );
@@ -87,7 +94,7 @@ function svgUrlToPng(
   svgImage.src = svgUrl;
 }
 
-function measureRect(svgElement: JSX.Element): Promise<DOMRect> {
+function measureRect(svgElement: JSX.Element): Promise<Pick<DOMRect, 'width' | 'height'>> {
   return new Promise((resolve, reject) => {
     const root = document.createElement("div");
     render(svgElement, root, () => {
@@ -109,8 +116,7 @@ function measureRect(svgElement: JSX.Element): Promise<DOMRect> {
         return;
       }
 
-      const bbox = (renderedElement as SVGSVGElement).getBBox()
-      resolve(bbox);
+      resolve((renderedElement as SVGSVGElement).getBBox())
     });
   });
 }

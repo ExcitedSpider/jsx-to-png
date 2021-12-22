@@ -1,5 +1,5 @@
 {
-  "name": "react-svg-png",
+  "name": "jsx-to-png",
   "version": "1.0.0-beta.0",
   "description": "Convert react svg component to png img data",
   "main": "lib/index.js",

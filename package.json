@@ -1,0 +1,27 @@
+{
+  "name": "react-svg-png",
+  "version": "1.0.0-beta.0",
+  "description": "Convert react svg component to png img data",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "scripts": {
+    "build": "rollup -c ./rollup.config.js",
+    "release": "npm run build && npm publish --registry=https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "react"
+  ],
+  "author": "qiuyifeng1997@outlook.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.1.1",
+    "@types/react-dom": "^17.0.11",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rollup": "^2.61.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-ts": "^2.0.4",
+    "typescript": "^4.5.4"
+  }
+}

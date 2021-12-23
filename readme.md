@@ -53,7 +53,9 @@ jsxToPng(<Icon name="Bruce Lee"></Icon>, { height: 100, width: 100 })
 ```
 ## Online Demo
 
-On the way !
+[Demo Page](https://excitedspider.github.io/jsx-to-png/)
+
+[Demo Source](https://github.com/ExcitedSpider/jsx-to-png/blob/master/test/test-app/src/App.tsx)
 
 ## Contribute
 

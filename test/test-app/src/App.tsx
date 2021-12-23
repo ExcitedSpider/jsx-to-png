@@ -65,9 +65,20 @@ function App() {
             onChange={(event) => setUserName(event.target.value)}
           ></input>
         </p>
+        <p>
+          <button onClick={dispatchDownload.bind(null, imgSrc)}>Download PNG !</button>
+        </p>
       </header>
     </div>
   );
+
+  function dispatchDownload(dataUrl:string) {
+    const anchorTag = document.createElement('a');
+
+    anchorTag.download = 'image.png';
+    anchorTag.href = dataUrl;
+    anchorTag.click()
+  }
 }
 
 export default App;

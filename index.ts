@@ -37,14 +37,18 @@ export async function jsxToPng(
 
   return new Promise((resolve, reject) => {
     try {
-      svgToPng(imageDomStr, (dataUrl)=>{
-        resolve(dataUrl);
-      }, {
-        ...defaultOptions,
-        height: rect.height,
-        width: rect.width,
-        ...options,
-      })
+      svgToPng(
+        imageDomStr,
+        (dataUrl) => {
+          resolve(dataUrl);
+        },
+        {
+          ...defaultOptions,
+          height: rect.height,
+          width: rect.width,
+          ...options,
+        }
+      );
     } catch (error) {
       reject(error);
     }
@@ -94,7 +98,9 @@ function svgUrlToPng(
   svgImage.src = svgUrl;
 }
 
-function measureRect(svgElement: JSX.Element): Promise<Pick<DOMRect, 'width' | 'height'>> {
+function measureRect(
+  svgElement: JSX.Element
+): Promise<Pick<DOMRect, "width" | "height">> {
   return new Promise((resolve, reject) => {
     const root = document.createElement("div");
     render(svgElement, root, () => {
@@ -116,7 +122,19 @@ function measureRect(svgElement: JSX.Element): Promise<Pick<DOMRect, 'width' | '
         return;
       }
 
-      resolve((renderedElement as SVGSVGElement).getBBox())
+      resolve({
+        height: get(renderedElement, 'height.baseVal.value'),
+        width: get(renderedElement, 'width.baseVal.value'),
+      });
+
     });
   });
+}
+
+function get(object: any, path: string) {
+  const pathParts = path.split(".");
+
+  return pathParts.reduce((acc, cur) => {
+    return acc?.[cur];
+  }, object);
 }

@@ -18,5 +18,5 @@ export default {
     },
   ],
   plugins: [commonjs(), nodeResolve(), ts({}), terser()],
-  external: ["react-dom/server"],
+  external: ["react-dom/server", "react-dom"],
 };
